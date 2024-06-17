@@ -1,0 +1,38 @@
+ #Create Employee Function
+# This is a Python function that accepts an employee's name as input and returns their details:
+#python
+def get_employee_details(employee_name):
+# Assume salary_data_dict is a dictionary containing the provided data
+    if employee_name in salary_data_dict:
+        return salary_data_dict[employee_name]
+    else:
+        return "Employee not found"
+#Data Processing with Dictionary
+#Process the salary data using a Python dictionary as follows:
+# Assuming the salary data is in a pandas DataFrame named salary_data_df
+salary_data_dict = salary_data_df.set_index('EmployeeName').to_dict(orient='index')
+#Error Handling
+#Error handling to address potential issues by using try-except blocks to handle exceptions.
+
+#Export Employee Details
+To export an employee's details to a CSV file within a zipped folder named "Employee Profile," by using Python's `zipfile` module:
+import zipfile
+import pandas as pd
+
+employee_name = "NATHANIEL FORD"
+employee_details = get_employee_details(employee_name)
+
+employee_df = pd.DataFrame.from_dict(employee_details, orient='index')
+employee_df.to_csv('employee_details.csv')
+
+with zipfile.ZipFile('Employee Profile.zip', 'w') as zipf:
+    zipf.write('employee_details.csv')
+#Unzip and Display Data with R
+#Using  R to unzip the folder created in the previously to display data:
+unzip("Employee Profile.zip")
+employee_data <- read.csv("employee_details.csv")
+print(employee_data)
+
+
+
+      
